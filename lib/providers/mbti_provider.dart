@@ -55,11 +55,12 @@ class MBTIProvider extends ChangeNotifier {
     }
   ];
   
-  // MBTI 캐릭터 데이터
+  // MBTI 캐릭터 데이터 - 6명 캐릭터 완전 업데이트
   static const Map<String, Map<String, dynamic>> characterData = {
-    // 여자 캐릭터들
+    // 여자 캐릭터 3명
     'ENFP': {
-      'name': '유나 (불꽃 사교러)',
+      'name': '유나',
+      'nickname': '불꽃 사교러',
       'emoji': '🔥',
       'description': '밝고 누구와도 금방 친해진다. 분위기 살림꾼! 감정 교류를 중시하고 작은 설렘도 귀하게 느끼는 활기찬 사람입니다.',
       'traits': ['활기찬', '외향적', '감정적', '사교적'],
@@ -71,9 +72,14 @@ class MBTIProvider extends ChangeNotifier {
       'weakness': '감정 과몰입, 선택장애',
       'keyword': '활기찬·외향적·계획보다 감정',
       'quote': '딱 얘기해보면 vibe가 느껴지죠!',
+      'age': 24,
+      'height': '165cm',
+      'job': '마케터',
+      'hobby': ['카페 투어', '새로운 사람 만나기', 'SNS 활동'],
     },
     'ISTJ': {
-      'name': '채린 (기준 확실러)',
+      'name': '채린',
+      'nickname': '기준 확실러',
       'emoji': '📋',
       'description': '안정적이고 깔끔한 태도로 일관성을 보여주는 사람. 천천히 알아가되 한번 열리면 깊은 관계를 만듭니다.',
       'traits': ['책임감', '안정적', '일관성', '신뢰할 수 있는'],
@@ -85,9 +91,14 @@ class MBTIProvider extends ChangeNotifier {
       'weakness': '감정 표현 서툼',
       'keyword': '책임감·냉정해보이지만 속은 따뜻',
       'quote': '급하게 만나고 급하게 식는 건 못해요.',
+      'age': 26,
+      'height': '162cm',
+      'job': '회계사',
+      'hobby': ['독서', '요리', '정리정돈'],
     },
     'INFJ': {
-      'name': '세아 (존재감 은은러)',
+      'name': '세아',
+      'nickname': '존재감 은은러',
       'emoji': '🌙',
       'description': '깊은 공감과 감성 대화로 묘하게 끌리는 사람. 상대 마음의 결을 맞춰주며 잔잔한 배려를 보여줍니다.',
       'traits': ['감성적', '공감능력', '배려심', '깊이있는'],
@@ -99,10 +110,15 @@ class MBTIProvider extends ChangeNotifier {
       'weakness': '혼자 고민하다 서운해짐',
       'keyword': '감정선·잔잔한 배려·무드 메이커',
       'quote': '그 사람만의 이야기가 있어요… 나는 그게 궁금해.',
+      'age': 25,
+      'height': '168cm',
+      'job': '상담사',
+      'hobby': ['일기 쓰기', '영화 감상', '산책'],
     },
-    // 남자 캐릭터들
+    // 남자 캐릭터 3명
     'ENTJ': {
-      'name': '현우 (리드하는 전략러)',
+      'name': '현우',
+      'nickname': '리드하는 전략러',
       'emoji': '🎯',
       'description': '계획적이고 주도적인 추진력을 가진 사람. 목표 설정부터 실행까지 밀당 없이 직진하는 카리스마 있는 리더입니다.',
       'traits': ['카리스마', '리더십', '야망', '추진력'],
@@ -114,9 +130,14 @@ class MBTIProvider extends ChangeNotifier {
       'weakness': '직설적, 상처 줄 수 있음',
       'keyword': '카리스마·리드·야망',
       'quote': '좋으면 표현해야죠. 바로 움직여 봅시다.',
+      'age': 28,
+      'height': '180cm',
+      'job': '스타트업 CEO',
+      'hobby': ['헬스', '독서', '네트워킹'],
     },
     'ISFP': {
-      'name': '지훈 (잔잔감성 아티스트)',
+      'name': '지훈',
+      'nickname': '잔잔감성 아티스트',
       'emoji': '🎨',
       'description': '조용하지만 분위기 좋은 사람. 감각과 분위기, 사소한 취향 교류를 중시하며 음악과 영화를 통해 마음을 나눕니다.',
       'traits': ['감성적', '예술적', '힐링', '조용한'],
@@ -128,9 +149,14 @@ class MBTIProvider extends ChangeNotifier {
       'weakness': '결정 미룸',
       'keyword': '감성·예술·힐링',
       'quote': '같이 별 보러 갈래요?',
+      'age': 27,
+      'height': '175cm',
+      'job': '음악 프로듀서',
+      'hobby': ['음악 감상', '영화 보기', '카페에서 작업'],
     },
     'ESTP': {
-      'name': '도윤 (스릴러 프리 다이버)',
+      'name': '도윤',
+      'nickname': '스릴러 프리 다이버',
       'emoji': '🏄‍♂️',
       'description': '즉흥적이고 재미있는 데이트를 선호하는 사람. 대화 케미와 유머로 공격하며 놀리며 다가가는 스릴러입니다.',
       'traits': ['에너지', '유머', '즉흥적', '스릴러'],
@@ -142,6 +168,10 @@ class MBTIProvider extends ChangeNotifier {
       'weakness': '깊은 관계에 진입할 때 고민 길어짐',
       'keyword': '에너지·스킨십 타이밍·유머',
       'quote': '어? 방금 설렜죠? 솔직히 말해봐요.',
+      'age': 26,
+      'height': '178cm',
+      'job': '이벤트 기획자',
+      'hobby': ['서핑', '클럽', '새로운 액티비티'],
     }
   };
   

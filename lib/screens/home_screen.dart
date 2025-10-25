@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../providers/mbti_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -17,17 +19,25 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         child: SafeArea(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: EdgeInsets.all(20.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 40),
+                
                 // 로고 섹션
                 Column(
                   children: [
-                    Text(
-                      '💕',
-                      style: TextStyle(fontSize: 80),
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '💕',
+                        style: TextStyle(fontSize: 60),
+                      ),
                     ),
                     SizedBox(height: 20),
                     Text(
@@ -56,7 +66,76 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 
-                SizedBox(height: 60),
+                SizedBox(height: 40),
+                
+                // 캐릭터 미리보기
+                Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.white.withOpacity(0.3)),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        '🔥 유나 (불꽃 사교러)',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        '📋 채린 (기준 확실러)',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        '🌙 세아 (존재감 은은러)',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        '🎯 현우 (리드하는 전략러)',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        '🎨 지훈 (잔잔감성 아티스트)',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        '🏄‍♂️ 도윤 (스릴러 프리 다이버)',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                
+                SizedBox(height: 40),
                 
                 // 시작 버튼
                 Container(
@@ -93,6 +172,83 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.white60,
                   ),
                 ),
+                
+                SizedBox(height: 20),
+                
+                // 이미 테스트 완료한 경우
+                Consumer<MBTIProvider>(
+                  builder: (context, provider, child) {
+                    if (provider.isSurveyCompleted && provider.userMBTI != null) {
+                      final character = provider.getCharacterInfo(provider.userMBTI!);
+                      if (character != null) {
+                        return Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(color: Colors.white.withOpacity(0.3)),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                '이미 테스트를 완료하셨네요!',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                '${character['emoji']} ${character['name']} (${character['nickname']})',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      onPressed: () => context.go('/result'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white.withOpacity(0.2),
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                      ),
+                                      child: Text('결과 보기'),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      onPressed: () => context.go('/matching'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        foregroundColor: Color(0xFF667eea),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                      ),
+                                      child: Text('매칭하기'),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    }
+                    return SizedBox.shrink();
+                  },
+                ),
+                
+                SizedBox(height: 40),
               ],
             ),
           ),
