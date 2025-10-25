@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet - 소개팅앱</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- 메인 화면 -->
+        <div id="home-screen" class="screen active">
+            <div class="container">
+                <div class="logo">
+                    <h1>💕 Meet</h1>
+                    <p>나만의 연애 캐릭터를 찾아보세요</p>
+                </div>
+                <button class="start-btn" onclick="startSurvey()">MBTI 테스트 시작</button>
+            </div>
+        </div>
+
+        <!-- MBTI 설문조사 화면 -->
+        <div id="survey-screen" class="screen">
+            <div class="container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="question-container">
+                    <h2 id="question-text"></h2>
+                    <div class="options" id="options-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 결과 화면 -->
+        <div id="result-screen" class="screen">
+            <div class="container">
+                <div class="character-card">
+                    <div class="character-image" id="character-image"></div>
+                    <h2 id="character-name"></h2>
+                    <p id="character-description"></p>
+                    <div class="traits" id="character-traits"></div>
+                </div>
+                <button class="match-btn" onclick="goToMatching()">매칭 시작하기</button>
+            </div>
+        </div>
+
+        <!-- 매칭 화면 -->
+        <div id="matching-screen" class="screen">
+            <div class="container">
+                <h2>💘 매칭 결과</h2>
+                <div class="match-results" id="match-results"></div>
+                <button class="restart-btn" onclick="restart()">다시 시작</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
