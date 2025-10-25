@@ -94,19 +94,10 @@ let currentQuestion = 0;
 let answers = [];
 let userMBTI = "";
 
-// 화면 전환 함수
-function showScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-    });
-    document.getElementById(screenId).classList.add('active');
-}
-
 // 설문조사 시작
 function startSurvey() {
     currentQuestion = 0;
     answers = [];
-    showScreen('survey-screen');
     loadQuestion();
 }
 
@@ -167,7 +158,8 @@ function calculateMBTI() {
         (counts.J >= counts.P ? 'J' : 'P');
     
     userMBTI = mbti;
-    showResult(mbti);
+    window.userMBTI = mbti; // 전역 변수로 저장
+    router.navigate('/result');
 }
 
 // 결과 표시
@@ -186,14 +178,11 @@ function showResult(mbti) {
         traitElement.textContent = trait;
         traitsContainer.appendChild(traitElement);
     });
-    
-    showScreen('result-screen');
 }
 
 // 매칭으로 이동
 function goToMatching() {
-    showScreen('matching-screen');
-    showMatchResults();
+    router.navigate('/matching');
 }
 
 // 매칭 결과 표시
@@ -260,10 +249,10 @@ function calculateCompatibility(mbti1, mbti2) {
 
 // 다시 시작
 function restart() {
-    showScreen('home-screen');
+    router.navigate('/');
 }
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
-    showScreen('home-screen');
+    // 라우터가 자동으로 초기화됨
 });
